@@ -5,6 +5,7 @@ import psycopg2
 
 # Initialize the Dash app
 app = dash.Dash(__name__)
+server = app.server 
 
 # Hardcoded PostgreSQL connection string from Render (replace with your own credentials)
 DB_URL = "postgresql://xaisurvey_user:LaMSpNwIrn0dezLAxZmJ3w4wtqfO13J4@dpg-ct13btbtq21c73el6r20-a/xaisurvey"  # Replace this with your actual connection string from Render
