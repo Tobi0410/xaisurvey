@@ -20,6 +20,30 @@ def connect_db():
         print(f"Error connecting to database: {e}")
         return None
 
+# Ensure that the survey_results table exists
+def create_table_if_not_exists():
+    conn = connect_db()
+    if conn:
+        cursor = conn.cursor()
+        try:
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS survey_results (
+                    id SERIAL PRIMARY KEY,
+                    name VARCHAR(255),
+                    age INT,
+                    gender VARCHAR(50),
+                    feedback TEXT
+                )
+            """)
+            conn.commit()
+            cursor.close()
+        except Exception as e:
+            print(f"Error creating table: {e}")
+        finally:
+            conn.close()
+
+# Call the function to create the table if it doesn't exist
+create_table_if_not_exists()
 
 # Layout of the app
 app.layout = html.Div([
