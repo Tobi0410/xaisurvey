@@ -1,6 +1,5 @@
 import dash
-import dash_core_components as dcc
-import dash_html_components as html
+from dash import dcc, html
 from dash.dependencies import Input, Output
 import psycopg2
 
@@ -9,7 +8,6 @@ app = dash.Dash(__name__)
 
 # Hardcoded PostgreSQL connection string from Render (replace with your own credentials)
 DB_URL = "postgresql://xaisurvey_user:LaMSpNwIrn0dezLAxZmJ3w4wtqfO13J4@dpg-ct13btbtq21c73el6r20-a/xaisurvey"  # Replace this with your actual connection string from Render
-
 
 # Connect to PostgreSQL database
 def connect_db():
@@ -84,6 +82,6 @@ def submit_form(n_clicks, name, age, gender, feedback):
             return "Error connecting to the database."
 
 
-# Run the app
+# Make sure Gunicorn uses Flask server (expose the server object)
 if __name__ == '__main__':
     app.run_server(debug=True)
